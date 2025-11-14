@@ -31,6 +31,12 @@
 
 // --- Função Principal (main) ---
 // Função principal que orquestra o fluxo do jogo, chamando as outras funções em ordem.
+typedef struct {
+    char nome[40];
+    char cor;      // Ex.: 'R', 'G', 'B'
+    int tropas;
+} Territorio;
+
 int main() {
     // 1. Configuração Inicial (Setup):
     // - Define o locale para português.
