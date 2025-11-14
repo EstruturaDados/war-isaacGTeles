@@ -28,16 +28,45 @@
 // Funções de interface com o usuário:
 // Funções de lógica principal do jogo:
 // Função utilitária:
+#include <stdio.h>
+#include <string.h>
 
 // --- Função Principal (main) ---
 // Função principal que orquestra o fluxo do jogo, chamando as outras funções em ordem.
 typedef struct {
     char nome[40];
-    char cor;      // Ex.: 'R', 'G', 'B'
+    char cor; 
     int tropas;
 } Territorio;
 
 int main() {
+
+    Territorio mapa[5];
+
+    for (int i = 0; i < 5; i++) {
+        printf("\n--- Cadastro do Território %d ---\n", i + 1);
+
+        printf("Nome: ");
+        fgets(mapa[i].nome, 40, stdin);
+        mapa[i].nome[strcspn(mapa[i].nome, "\n")] = '\0';
+
+        printf("Cor do exército (VERMELHO/VERDE/AZUL): ");
+        scanf("%c", &mapa[i].cor);
+        getchar(); // limpar ENTER
+
+        printf("Número de tropas: ");
+        scanf("%d", &mapa[i].tropas);
+        getchar(); // limpar ENTER
+    }
+
+    printf("\n===== MAPA COMPLETO =====\n");
+    for (int i = 0; i < 5; i++) {
+        printf("%d - %-15s | Cor: %c | Tropas: %d\n",
+               i + 1,
+               mapa[i].nome,
+               mapa[i].cor,
+               mapa[i].tropas);
+    }
     // 1. Configuração Inicial (Setup):
     // - Define o locale para português.
     // - Inicializa a semente para geração de números aleatórios com base no tempo atual.
